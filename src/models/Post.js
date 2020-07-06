@@ -4,7 +4,11 @@ const fs = require("fs");
 const path = require("path");
 const { promisify } = require("util");
 
-const s3 = new aws.S3();
+const s3 = new aws.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACESS_KEY,
+  region: process.env.AWS_DEFAULT_REGION
+});
 
 const PostSchema = new mongoose.Schema({
   name: String,
